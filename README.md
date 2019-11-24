@@ -64,6 +64,7 @@ out-of-order execution on modern microprocessors.
 		- '-m' para valores de memória (500 valores inteiros)
 		- '-r' para número de unidades funcionais (3 inteiros, um para cada tipo (ADD,MULT,LOAD/STORE))
 		- '-l' para tempo de latência para cada instrução (uma linha para cada instrução, do formato <INSTRUÇÃO> <tempo de latência em ciclos>)
+		- '-c' para execução automatica de n ciclos de clock (-c <numero de ciclos>)
 		- '-s' indica que o programa execute em modo de especulação por hardware (com reorder buffer)
 		* O repositório fornece arquivos de teste já preenchidos na pasta 'in'
         * Também são fornecidos benchmarks para testes básicos (ideais para validação da ferramenta), incluidos em in/benchmarks
