@@ -431,7 +431,7 @@ int sc_main(int argc, char *argv[])
     for(int k = 1; k < argc; k+=2)
     {
         int i;
-        if (strlen(argv[k]) > 3)
+        if (strlen(argv[k]) > 2)
             show_message("Opção inválida",string("Opção \"") + string(argv[k]) + string("\" inválidasss"));
         else
         {
@@ -439,10 +439,7 @@ int sc_main(int argc, char *argv[])
             switch(c)
             {
             	case 'c':
-            		flagStep = 1; 
             		nCiclos = (int)argv[k+1][0] - 48;
-            		if(argv[k][2] == '+')
-            			flagStep = 2;
             		break;
                 case 'q':
                     inFile.open(argv[k+1]);
@@ -559,7 +556,7 @@ int sc_main(int argc, char *argv[])
         {
             botao.enabled(false);
             clock_control.enabled(true);
-            clock_m_control.enabled(true);
+            if(nCiclos != 0) clock_m_control.enabled(true);
             //Desativa os menus apos inicio da execucao
             op.enabled(0,false);
             op.enabled(1,false);
@@ -577,8 +574,9 @@ int sc_main(int argc, char *argv[])
         else
             show_message("Fila de instruções vazia","A fila de instruções está vazia. Insira um conjunto de instruções para iniciar.");
     });
-    clock_control.events().click([]
+    clock_control.events().click([&]
     {
+    	clock_m_control.enabled(false);
     	if(sc_is_running())
             sc_start();
     	
